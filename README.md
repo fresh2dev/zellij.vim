@@ -124,3 +124,8 @@ vim.api.nvim_create_autocmd({ 'DirChanged', 'WinEnter', 'BufEnter' }, {
   end,
 })
 ```
+
+## Shoutouts
+
+- [zellij-org/zellij](https://github.com/zellij-org/zellij)
+- [christoomey/vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
