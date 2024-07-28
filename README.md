@@ -103,6 +103,14 @@ keys = {
 },
 ```
 
+### Using Zellij's MoveFocusOrTab Action
+
+By default Zellij's `move-focus` action is used when navigating. If you want to use `move-focus-or-tab` instead, in order to navigate to the next / previous tab when focus is on the edge of the screen, then set the following:
+
+```vim
+let g:zellij_navigator_nav_move_focus_or_tab = 1
+```
+
 ### More Vim / Zellij Integration
 
 Even without this plugin, you can control Zellij by calling the Zellij CLI from within Vim. For example, here's a Vim autocommand which names the current Zellij tab after Vim's current working directory (an excerpt from [my dotfiles](https://github.com/fresh2dev/dotfiles)):
