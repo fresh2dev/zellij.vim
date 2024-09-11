@@ -20,7 +20,7 @@ if exists("g:zellij_navigator_no_default_mappings") && g:zellij_navigator_no_def
     finish
 endif
 
-noremap <C-h> :ZellijNavigateLeft<CR>
-noremap <C-j> :ZellijNavigateDown<CR>
-noremap <C-k> :ZellijNavigateUp<CR>
-noremap <C-l> :ZellijNavigateRight<CR>
+nnoremap <C-h> :ZellijNavigateLeft<CR>
+nnoremap <C-j> :ZellijNavigateDown<CR>
+nnoremap <C-k> :ZellijNavigateUp<CR>
+nnoremap <C-l> :ZellijNavigateRight<CR>
