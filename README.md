@@ -42,26 +42,37 @@ Plug 'https://github.com/fresh2dev/zellij.vim.git'
 
 This plugin creates the following commands for navigation:
 
-* `:ZellijNavigateUp`    - Move **up** one Vim window or Zellij pane.
-* `:ZellijNavigateDown`  - Move **down** one Vim window or Zellij pane.
-* `:ZellijNavigateLeft`  - Move **left** one Vim window or Zellij pane.
-* `:ZellijNavigateRight` - Move **right** one Vim window or Zellij pane.
+* `:ZellijNavigateUp`    - Move ***up*** one Vim window or Zellij pane.
+* `:ZellijNavigateDown`  - Move ***down*** one Vim window or Zellij pane.
+* `:ZellijNavigateLeft`  - Move ***left*** one Vim window or Zellij pane.
+* `:ZellijNavigateRight` - Move ***right*** one Vim window or Zellij pane.
 
 And these commands for opening a new pane *while preserving Vim's current working directory*:
 
-* `:ZellijNewPane`       - Open a **floating** Zellij pane.
-* `:ZellijNewPaneSplit`  - Open a Zellij pane **below**.
-* `:ZellijNewPaneVSplit` - Open a Zellij pane to the **right**.
+* `:ZellijNewPane`       - Open a ***floating*** Zellij pane.
+* `:ZellijNewPaneSplit`  - Open a Zellij pane ***below***.
+* `:ZellijNewPaneVSplit` - Open a Zellij pane to the ***right***.
 
 ### Mappings
 
 These are the default mappings for navigation:
 
 ```vim
-noremap <C-h> :ZellijNavigateLeft<CR>
-noremap <C-j> :ZellijNavigateDown<CR>
-noremap <C-k> :ZellijNavigateUp<CR>
-noremap <C-l> :ZellijNavigateRight<CR>
+nnoremap <silent> <C-h> :ZellijNavigateLeft<CR>
+nnoremap <silent> <C-j> :ZellijNavigateDown<CR>
+nnoremap <silent> <C-k> :ZellijNavigateUp<CR>
+nnoremap <silent> <C-l> :ZellijNavigateRight<CR>
+```
+
+If `let g:zelli_navigator_move_focus_or_tab = 1` is specified, the defaults include a *bang* (`!`).
+
+With the *bang* present, this plugin calls executes the Zellij action [`move-focus-or-tab`](https://zellij.dev/documentation/cli-actions#move-focus-or-tab) instead of the default action [`move-focus`](https://zellij.dev/documentation/cli-actions#move-focus).
+
+```vim
+nnoremap <silent> <C-h> :ZellijNavigateLeft!<CR>
+nnoremap <silent> <C-j> :ZellijNavigateDown!<CR>
+nnoremap <silent> <C-k> :ZellijNavigateUp!<CR>
+nnoremap <silent> <C-l> :ZellijNavigateRight!<CR>
 ```
 
 Disable the default mappings with:
@@ -70,59 +81,33 @@ Disable the default mappings with:
 let g:zellij_navigator_no_default_mappings = 1
 ```
 
-Notice that there are no default mappings for `:ZellijNewPane...`. If desired, define these yourself.
-
-This is what I use...
-
-...in Vim:
+Notice that there are no default mappings for `:ZellijNewPane...`. If desired, define these yourself. This is what I use:
 
 ```vim
-" Open floating Zellij pane with `<leader>tt` or `Alt+f`.
-nnoremap <leader>tt :ZellijNewPane<CR>
+" Open ZelliJ floating pane.
+nnoremap <leader>zjf :ZellijNewPane<CR>
+" Open ZelliJ pane below.
+nnoremap <leader>zjo :ZellijNewPaneSplit<CR>
+" Open ZelliJ pane to the right.
+nnoremap <leader>zjv :ZellijNewPaneVSplit<CR>
 
-execute "set <M-f>=\ef"
-noremap <M-f> :ZellijNewPane<CR>
-
-" Open Zellij pane below with `Alt+t`.
-execute "set <M-t>=\et"
-noremap <M-t> :ZellijNewPaneSplit<CR>
-
-" Open Zellij pane to the right with `Alt+v`.
-execute "set <M-v>=\ev"
-noremap <M-v> :ZellijNewPaneVSplit<CR>
-```
-
-...in Neovim (using lazy.nvim):
-
-```lua
-keys = {
-  { '<leader>tt', ':ZellijNewPane<CR>', mode = { 'n' }, { noremap = true } },
-  { '<M-f>', ':ZellijNewPane<CR>', mode = { 'n', 'i' }, { noremap = true } },
-  { '<M-t>', ':ZellijNewPaneSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
-  { '<M-v>', ':ZellijNewPaneVSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
-},
+" Run command in new ZelliJ floating pane.
+nnoremap <leader>zjrf :execute 'ZellijNewPane ' . input('Command: ')<CR>
+" Run command in new ZelliJ pane below.
+nnoremap <leader>zjro :execute 'ZellijNewPaneSplit ' . input('Command: ')<CR>
+" Run command in new ZelliJ pane to the right.
+nnoremap <leader>zjrv :execute 'ZellijNewPaneVSplit ' . input('Command: ')<CR>
 ```
 
 ### More Vim / Zellij Integration
 
 Even without this plugin, you can control Zellij by calling the Zellij CLI from within Vim. For example, here's a Vim autocommand which names the current Zellij tab after Vim's current working directory (an excerpt from [my dotfiles](https://github.com/fresh2dev/dotfiles)):
 
-In Vimscript:
-
 ```vim
-autocmd DirChanged,WinEnter,BufEnter * \
-  call system('zellij action rename-tab "' . fnamemodify(getcwd(), ':t') . '"')
-```
-
-In Lua:
-
-```lua
-vim.api.nvim_create_autocmd({ 'DirChanged', 'WinEnter', 'BufEnter' }, {
-  pattern = '*',
-  callback = function()
-    vim.fn.system('zellij action rename-tab "' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t') .. '"')
-  end,
-})
+autocmd DirChanged,BufEnter *
+    \ if &buftype == '' |
+    \ call system('zellij action rename-tab "' . fnamemodify(getcwd(), ':t') . '"') |
+    \ endif
 ```
 
 ## Shoutouts
