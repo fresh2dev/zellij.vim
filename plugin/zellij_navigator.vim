@@ -4,8 +4,10 @@ endif
 
 let g:zellij_navigator_loaded = 1
 
-autocmd VimEnter,WinEnter * call zellij_navigator#ZellijLock()
-autocmd VimLeave * call zellij_navigator#ZellijUnlock()
+if !exists("g:zellij_navigator_disable_autolock") || g:zellij_navigator_disable_autolock != 1
+    autocmd VimEnter,WinEnter * call zellij_navigator#ZellijLock()
+    autocmd VimLeave * call zellij_navigator#ZellijUnlock()
+endif
 
 command -nargs=0 -bang ZellijNavigateUp call zellij_navigator#ZellijNavigateUp(<bang>0)
 command -nargs=0 -bang ZellijNavigateDown call zellij_navigator#ZellijNavigateDown(<bang>0)
