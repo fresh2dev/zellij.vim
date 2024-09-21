@@ -109,7 +109,13 @@ nnoremap <leader>zjro :execute 'ZellijNewPaneSplit ' . input('Command: ')<CR>
 nnoremap <leader>zjrv :execute 'ZellijNewPaneVSplit ' . input('Command: ')<CR>
 ```
 
-### More Vim / Zellij Integration
+### Autocommands
+
+This plugin was built to be paired with the Zellij plugin [**zellij-autolock**](https://github.com/fresh2dev/zellij-autolock). By design, this plugin will define autocommands to lock Zellij on *VimEnter* and unlock on *VimLeave*. If you don't desire this behavior, define this variable to disable autolocking:
+
+```vim
+let g:zellij_navigator_disable_autolock = 1
+```
 
 Even without this plugin, you can control Zellij by calling the Zellij CLI from within Vim. For example, here's a Vim autocommand which names the current Zellij tab after Vim's current working directory (an excerpt from [my dotfiles](https://github.com/fresh2dev/dotfiles)):
 
