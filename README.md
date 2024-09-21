@@ -47,15 +47,42 @@ This plugin creates the following commands for navigation:
 * `:ZellijNavigateLeft`  - Move ***left*** one Vim window or Zellij pane.
 * `:ZellijNavigateRight` - Move ***right*** one Vim window or Zellij pane.
 
-And these commands for opening a new pane *while preserving Vim's current working directory*:
+Add a bang (!) to move to neighboring ZelliJ panes *or tabs*.
+
+* `:ZellijNavigateUp!`    - Move ***up*** one Vim window or Zellij pane *or move to next Zellij tab*.
+* `:ZellijNavigateDown!`  - Move ***down*** one Vim window or Zellij pane *or move to previous Zellij tab*.
+* `:ZellijNavigateLeft!`  - Move ***left*** one Vim window or Zellij pane *or move to previous Zellij tab*.
+* `:ZellijNavigateRight!` - Move ***right*** one Vim window or Zellij pane *or move to next Zellij tab*.
+
+Additional commands are included to allow opening a new Zellij pane *while preserving Vim's working directory*:
 
 * `:ZellijNewPane`       - Open a ***floating*** Zellij pane.
 * `:ZellijNewPaneSplit`  - Open a Zellij pane ***below***.
 * `:ZellijNewPaneVSplit` - Open a Zellij pane to the ***right***.
 
+The `ZellijNewPane...` commands can also invoke a command in the new pane, e.g.:
+
+```vim
+:ZellijNewPaneVSplit git log --graph --oneline
+```
+
 ### Mappings
 
-These are the default mappings for navigation:
+This plugin maps Ctrl + h/j/k/l for navigation.
+
+You can modify the default mappings to move panes *or tabs* with:
+
+```vim
+let g:zelli_navigator_move_focus_or_tab = 1
+```
+
+Or, disable the default mappings with:
+
+```vim
+let g:zellij_navigator_no_default_mappings = 1
+```
+
+For reference, these are the default mappings:
 
 ```vim
 nnoremap <silent> <C-h> :ZellijNavigateLeft<CR>
@@ -64,24 +91,7 @@ nnoremap <silent> <C-k> :ZellijNavigateUp<CR>
 nnoremap <silent> <C-l> :ZellijNavigateRight<CR>
 ```
 
-If `let g:zelli_navigator_move_focus_or_tab = 1` is specified, the defaults include a *bang* (`!`).
-
-With the *bang* present, this plugin calls executes the Zellij action [`move-focus-or-tab`](https://zellij.dev/documentation/cli-actions#move-focus-or-tab) instead of the default action [`move-focus`](https://zellij.dev/documentation/cli-actions#move-focus).
-
-```vim
-nnoremap <silent> <C-h> :ZellijNavigateLeft!<CR>
-nnoremap <silent> <C-j> :ZellijNavigateDown!<CR>
-nnoremap <silent> <C-k> :ZellijNavigateUp!<CR>
-nnoremap <silent> <C-l> :ZellijNavigateRight!<CR>
-```
-
-Disable the default mappings with:
-
-```vim
-let g:zellij_navigator_no_default_mappings = 1
-```
-
-Notice that there are no default mappings for `:ZellijNewPane...`. If desired, define these yourself. This is what I use:
+There are no default mappings for the `ZellijNewPane...` commands. If desired, define these yourself. This is what I use:
 
 ```vim
 " Open ZelliJ floating pane.
