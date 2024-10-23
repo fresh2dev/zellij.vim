@@ -49,10 +49,8 @@ This plugin creates the following commands for navigation:
 
 Add a bang (!) to move to neighboring ZelliJ panes *or tabs*.
 
-* `:ZellijNavigateUp!`    - Move ***up*** one Vim window or Zellij pane *or move to next Zellij tab*.
-* `:ZellijNavigateDown!`  - Move ***down*** one Vim window or Zellij pane *or move to previous Zellij tab*.
-* `:ZellijNavigateLeft!`  - Move ***left*** one Vim window or Zellij pane *or move to previous Zellij tab*.
-* `:ZellijNavigateRight!` - Move ***right*** one Vim window or Zellij pane *or move to next Zellij tab*.
+* `:ZellijNavigateLeft!`  - Move ***left*** one Vim window or Zellij pane *or move to left Zellij tab*.
+* `:ZellijNavigateRight!` - Move ***right*** one Vim window or Zellij pane *or move to right Zellij tab*.
 
 Additional commands are included to allow opening a new Zellij pane *while preserving Vim's working directory*:
 

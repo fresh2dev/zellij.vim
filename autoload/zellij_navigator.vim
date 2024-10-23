@@ -5,7 +5,8 @@ function s:zellij_nav(short_direction, direction, bang)
 
     " if the window ID didn't change, then we didn't switch
     if cur_winnr == winnr()
-        let command = "zellij action move-focus" . (a:bang ? "-or-tab " : " ") . a:direction
+        let can_move_tab = a:bang && (a:direction ==# 'left' || a:direction ==# 'right')
+        let command = "zellij action move-focus" . (can_move_tab ? "-or-tab " : " ") . a:direction
         call system(command)
     endif
 endfunction
