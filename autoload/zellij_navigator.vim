@@ -27,16 +27,7 @@ function zellij_navigator#ZellijNavigateLeft(bang)
     call s:zellij_nav("h", "left", a:bang)
 endfunction
 
-function zellij_navigator#ZellijLock()
-    call system('zellij action switch-mode locked')
-endfunction
-
-function zellij_navigator#ZellijUnlock()
-    call system('zellij action switch-mode normal')
-endfunction
-
 function zellij_navigator#ZellijNewPane(direction = '', cmd = '')
-    call zellij_navigator#ZellijUnlock()
     " If no command given, call $SHELL.
     let l:cmd = len(a:cmd) > 0 ? a:cmd : $SHELL
     " If no command given, close on exit.
