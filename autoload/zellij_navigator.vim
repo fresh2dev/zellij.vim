@@ -27,6 +27,11 @@ function zellij_navigator#ZellijNavigateLeft(bang)
     call s:zellij_nav("h", "left", a:bang)
 endfunction
 
+function zellij_navigator#ZellijNewTab(args = '')
+    let l:args = len(a:args) > 0 ? a:args : '--layout default --cwd "' . getcwd() . '"'
+    call system('zellij action new-tab ' . l:args)
+endfunction
+
 function zellij_navigator#ZellijNewPane(direction = '', cmd = '')
     " If no command given, call $SHELL.
     let l:cmd = len(a:cmd) > 0 ? a:cmd : $SHELL

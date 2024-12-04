@@ -9,6 +9,7 @@ command -nargs=0 -bang ZellijNavigateDown call zellij_navigator#ZellijNavigateDo
 command -nargs=0 -bang ZellijNavigateLeft call zellij_navigator#ZellijNavigateLeft(<bang>0)
 command -nargs=0 -bang ZellijNavigateRight call zellij_navigator#ZellijNavigateRight(<bang>0)
 
+command -nargs=? ZellijNewTab call zellij_navigator#ZellijNewTab(<f-args>)
 command -nargs=? ZellijNewPane call zellij_navigator#ZellijNewPane('', <f-args>)
 command -nargs=? ZellijNewPaneSplit call zellij_navigator#ZellijNewPane('down', <f-args>)
 command -nargs=? ZellijNewPaneVSplit call zellij_navigator#ZellijNewPane('right', <f-args>)
