@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 - 2025-01-07
+
+**Full Changelog**: https://github.com/fresh2dev/zellij.vim/compare/0.3.0...0.3.1
+
+### :fist: Fixes
+
+- Perform movements even when not in a zellij session
+
+### :point_right: Changes
+
+- Default mappings apply to all modes
+
 ## 0.3.0 - 2024-12-04
 
 **Full Changelog**: https://github.com/fresh2dev/zellij.vim/compare/0.2.3...0.3.0
