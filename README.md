@@ -11,7 +11,7 @@ This Vim plugin relies on the Zellij plugin [zellij-autolock](https://github.com
 Here is a demonstration of how you can seamlessly navigate through Zellij panes running Vim, Neovim, and even other commands like FZF.
 
 <video autoplay="false" controls="controls" style="width: 800px;">
-  <source src="https://img.fresh2.dev/1733381151.mp4" type="video/mp4"/>
+  <source src="https://img.fresh2.dev/1733381151.mp4" type="video/webm"/>
   <p><i>This page does not support mp4 video playback.</i></p>
   <p><i><a href="https://img.fresh2.dev/1733381151.mp4" target="_blank">Click here to watch the demo recording.</a></i></p>
 </video>
