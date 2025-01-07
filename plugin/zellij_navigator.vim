@@ -8,10 +8,10 @@ let g:zellij_navigator_loaded = 1
 if !exists('$ZELLIJ')
     if !exists("g:zellij_navigator_no_default_mappings") || g:zellij_navigator_no_default_mappings != 1
         " Map C-h/j/k/l movements to navigate Vim windows.
-        nnoremap <silent> <C-h> <C-W>h
-        nnoremap <silent> <C-j> <C-W>j
-        nnoremap <silent> <C-k> <C-W>k
-        nnoremap <silent> <C-l> <C-W>l
+        noremap <silent> <C-h> :wincmd h<CR>
+        noremap <silent> <C-j> :wincmd j<CR>
+        noremap <silent> <C-k> :wincmd k<CR>
+        noremap <silent> <C-l> :wincmd l<CR>
     endif
 
     finish
@@ -31,16 +31,16 @@ command -nargs=0 -bang ZellijNavigateRight call zellij_navigator#ZellijNavigateR
 
 " Map C-h/j/k/l movements to navigate across Vim windows and Zellij panes.
 if !exists("g:zellij_navigator_no_default_mappings") || g:zellij_navigator_no_default_mappings != 1
-    if exists("g:zelli_navigator_move_focus_or_tab") && g:zelli_navigator_move_focus_or_tab == 1
-        nnoremap <silent> <C-h> :ZellijNavigateLeft!<CR>
-        nnoremap <silent> <C-j> :ZellijNavigateDown!<CR>
-        nnoremap <silent> <C-k> :ZellijNavigateUp!<CR>
-        nnoremap <silent> <C-l> :ZellijNavigateRight!<CR>
+    if !exists("g:zelli_navigator_move_focus_or_tab") || g:zelli_navigator_move_focus_or_tab != 1
+        noremap <silent> <C-h> :ZellijNavigateLeft<CR>
+        noremap <silent> <C-j> :ZellijNavigateDown<CR>
+        noremap <silent> <C-k> :ZellijNavigateUp<CR>
+        noremap <silent> <C-l> :ZellijNavigateRight<CR>
     else
-        nnoremap <silent> <C-h> :ZellijNavigateLeft<CR>
-        nnoremap <silent> <C-j> :ZellijNavigateDown<CR>
-        nnoremap <silent> <C-k> :ZellijNavigateUp<CR>
-        nnoremap <silent> <C-l> :ZellijNavigateRight<CR>
+        noremap <silent> <C-h> :ZellijNavigateLeft!<CR>
+        noremap <silent> <C-j> :ZellijNavigateDown!<CR>
+        noremap <silent> <C-k> :ZellijNavigateUp!<CR>
+        noremap <silent> <C-l> :ZellijNavigateRight!<CR>
     endif
 endif
 
